@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main>
       <div
-        className="bg-gray-800 bg-[url('/images/house.jpg')] bg-cover bg-no-repeat h-[60vh] lg:bg-[url('/images/house.jpg')] lg:bg-cover lg:h-[100vh]"
+        className="bg-gray-800 bg-[url('/images/house.jpg')] bg-cover bg-no-repeat  h-[55vh]  sm:h-[90vh]  md:h-[80vh] lg:h-[120vh] "
       >
         <div className="flex ml-8 py-5 gap-1">
           <GoHome className='text-white text-4xl' />
@@ -34,7 +34,7 @@ export default function Home() {
         </button>
       </div>
       <div
-        className="bg-emerald-400 text-white text-center py-1 h=[19em] md:py-7 md:h-[13em]"
+        className="bg-black text-white text-center py-1 h=[19em] md:py-7 md:h-[13em]"
       >
         <p className="font-bold text-2xl md:text-3xl">Welcome to payment overview</p>
         <p className="font-bold text-2xl md:text-3xl pb-3">
@@ -70,7 +70,7 @@ export default function Home() {
       </div>
 
       <div
-        className="bg-emerald-400 mt-[3em] text-white grid grid-cols-1 h-[16em] md:grid-cols-3 gap-8 pl-5 md:h-[7em] lg:pt-3 lg:pl-7"
+        className="bg-black mt-[3em] text-white grid grid-cols-1 h-[16em] md:grid-cols-3 gap-8 pl-5 md:h-[7em] lg:pt-3 lg:pl-7"
       >
         <div className="flex flex-col items-center md:w-[250px] lg:w-[350px]">
           <GoHome className='text-white text-4xl' />

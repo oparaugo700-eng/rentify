@@ -1,7 +1,39 @@
-export function Footer() {
-    return (
-        <main>
+import Link from "next/link";
+import { FaFacebookF } from "react-icons/fa6";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaGithubSquare } from "react-icons/fa";
 
-        </main>
+export function Footer() {
+    const year = new Date().getFullYear()
+    return (
+        <footer className="bg-gray-400 grid grid-cols-1 md:px-8 md:grid-cols-2 lg:grid-cols-3 lg:py-4 lg:px-5 lg:bg-black">
+            <div>
+                <p className="text-blue-500 font-bold text-2xl">Rentify</p>
+                <p className="text-xs text-gray-100">&copy; {year} Rental Management system</p>
+            </div>
+
+            <div>
+                <p className="text-md text-gray-700">Head office</p>
+                <p className="text-md text-gray-700">Umaru Musa way, Asokoro</p>
+            </div>
+
+            <div>
+                <ul className="flex lg:justify-end items-center gap-8">
+                    <li><Link href="#"> <FaFacebookF className="text-3xl text-blue-500" /></Link></li>
+                    <li><Link href="#"> <FaLinkedinIn className="text-3xl text-blue-500" /></Link></li>
+                    <li><Link href="#"> <FaGithubSquare className="text-3xl text-blue-500" /></Link></li>
+                </ul>
+
+                <ul className="flex lg:justify-end items-center gap-4">
+                    <li><Link href="#" className="text-sm text-gray-100">Glossary</Link></li>
+                    <li><Link href="#" className="text-sm text-gray-100">Cookies</Link></li>
+                    <li><Link href="#" className="text-sm text-gray-100">Privacy and Policy</Link></li>
+
+                </ul>
+
+            </div>
+
+
+        </footer>
     )
 }
