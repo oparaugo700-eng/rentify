@@ -17,11 +17,11 @@ export function Navbar() {
                 <ul className="hidden md:flex gap-10 font-semibold cursor-pointer">
                     <Link href="/"><li>Home</li></Link>
                     <Link href="/dashboard/tenant-form"><li>Tenant-Form</li></Link>
-                    <Link href=""><li>Rent-List</li></Link>
+                    <Link href="/dashboard/rent-list"><li>Rent-List</li></Link>
                 </ul>
 
                 <div className="hidden md:flex gap-3">
-                    <p className="w-[60px] h-[30px] bg-blue-500 text-white flex justify-center items-center rounded cursor-pointer">Login</p>
+                    <Link href="/auth/login"> <p className="w-[60px] h-[30px] bg-blue-500 text-white flex justify-center items-center rounded cursor-pointer">Login</p></Link>
                     <CgProfile className="text-3xl" />
                 </div>
 
@@ -36,9 +36,9 @@ export function Navbar() {
                         <ul>
                             <Link href="/"><li>Home</li></Link>
                             <Link href="/dashboard/tenant-form"><li>Tenant-Form</li></Link>
-                            <li>Rent-list</li>
+                            <Link href="/dashboard/rent-list"><li>Rent-List</li></Link>
                         </ul>
-                        <p className="w-[60px] h-[30px] bg-blue-500 text-white flex justify-center items-center rounded">Login</p>
+                        <Link href="/auth/login"> <p className="w-[60px] h-[30px] bg-blue-500 text-white flex justify-center items-center rounded cursor-pointer">Login</p></Link>
                         <CgProfile className="text-3xl" />
                     </div>
                 )

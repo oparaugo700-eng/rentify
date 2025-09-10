@@ -1,6 +1,10 @@
 "use client"
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import { useField, useFormik } from "formik";
+import { db } from "@/config/firebase.config";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { addDoc, collection } from "firebase/firestore";
+import { useFormik } from "formik";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
@@ -15,6 +19,13 @@ const schema = yup.object().shape({
 });
 
 export default function TenantForm() {
+    const [open, setOpen] = useState(false)
+    const { data: session } = useSession();
+    console.log(session)
+
+    const handleClose = () => {
+        setOpen(false)
+    }
     const { handleSubmit, handleChange, handleBlur, touched, values, errors } = useFormik({
         initialValues: {
             fullName: "",
@@ -27,8 +38,25 @@ export default function TenantForm() {
             notes: "",
         },
         onSubmit: async (values, { resetForm }) => {
-            console.log(`fullname: ${values.fullName} email:${values.email} amount: ${values.rentAmount} status: ${values.paymentStatus} phone: ${values.phone}`)
-            resetForm()
+            await addDoc(collection(db, "tenants"), {
+                user: session?.user.id,
+                fullName: values.fullName,
+                phone: values.phone,
+                email: values.email,
+                apartment: values.apartment,
+                rentAmount: values.rentAmount,
+                dueDate: values.dueDate,
+                paymentStatus: values.paymentStatus,
+                notes: values.notes,
+                timeCreated: new Date().getTime(),
+            }).then(() => {
+                setOpen(true)
+                resetForm()
+            }).catch(e => {
+                console.error(e)
+                setOpen(false)
+                console.error("Unable to submit")
+            })
         },
         validationSchema: schema
     })
@@ -178,9 +206,17 @@ export default function TenantForm() {
                         Add Tenant
                     </Button>
                 </div>
-
-
             </form>
+            {/* success dialog */}
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Sucess</DialogTitle>
+                <DialogContent>
+                    <Typography>Tenant added succefully</Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary" variant="contained">Close</Button>
+                </DialogActions>
+            </Dialog>
 
         </main>
     )
